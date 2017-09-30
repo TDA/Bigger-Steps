@@ -26,45 +26,34 @@ public class Futures {
         List<Future<Integer>> futureList = new ArrayList<>();
 
         // Start thread for the first fourth of the numbers
-        FutureTask<Integer> futureTask_1 = new FutureTask<Integer>(new Callable<Integer>() {
-            @Override
-            public Integer call() {
-                System.out.println(String.format("From %s to %s", first, last / 4));
-                return Futures.amountOfDivisibleBy(first, last / 4, divisor);
-            }
+        FutureTask<Integer> futureTask_1 = new FutureTask<>(() -> {
+            System.out.println(String.format("From %s to %s", first, last / 4));
+            return Futures.amountOfDivisibleBy(first, last / 4, divisor);
         });
         futureList.add(futureTask_1);
         executorService.execute(futureTask_1);
 
         // Start thread for the second fourth of the numbers
-        FutureTask<Integer> futureTask_2 = new FutureTask<Integer>(new Callable<Integer>() {
-            @Override
-            public Integer call() {
-                System.out.println(String.format("From %s to %s", last / 4 + 1, last / 4 * 2));
-                return Futures.amountOfDivisibleBy(last / 4 + 1, last / 4 * 2, divisor);
-            }
+        FutureTask<Integer> futureTask_2 = new FutureTask<>(() -> {
+            System.out.println(String.format("From %s to %s", last / 4 + 1, last / 4 * 2));
+            return Futures.amountOfDivisibleBy(last / 4 + 1, last / 4 * 2, divisor);
         });
         futureList.add(futureTask_2);
         executorService.execute(futureTask_2);
 
         // Start thread for the last fourth of the numbers
-        FutureTask<Integer> futureTask_3 = new FutureTask<Integer>(new Callable<Integer>() {
-            @Override
-            public Integer call() {
-                System.out.println(String.format("From %s to %s", last / 4 * 2, last));
-                return Futures.amountOfDivisibleBy(last / 4 * 2 + 1, last / 4 * 3, divisor);
-            }
+        FutureTask<Integer> futureTask_3 = new FutureTask<>(() -> {
+            System.out.println(String.format("From %s to %s", last / 4 * 2, last));
+            return Futures.amountOfDivisibleBy(last / 4 * 2 + 1, last / 4 * 3, divisor);
         });
         futureList.add(futureTask_3);
         executorService.execute(futureTask_3);
 
         // Start thread for the last fourth of the numbers
-        FutureTask<Integer> futureTask_4 = new FutureTask<Integer>(new Callable<Integer>() {
-            @Override
-            public Integer call() {
-                System.out.println(String.format("From %s to %s", last / 4 * 3, last));
-                return Futures.amountOfDivisibleBy(last / 4 * 3 + 1, last, divisor);
-            }
+        FutureTask<Integer> futureTask_4 = new FutureTask<>(() -> {
+
+            System.out.println(String.format("From %s to %s", last / 4 * 3, last));
+            return Futures.amountOfDivisibleBy(last / 4 * 3 + 1, last, divisor);
         });
         futureList.add(futureTask_4);
         executorService.execute(futureTask_4);
